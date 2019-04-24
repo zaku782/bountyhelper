@@ -21,8 +21,8 @@ public class WebConfig extends WebMvcConfigurationSupport {
                 response.setHeader("Access-Control-Allow-Headers",
                         "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With");
                 response.setHeader("Access-Control-Allow-Credentials", "true");
-                //response.setHeader("Access-Control-Allow-Origin", "http://www.animalkindom.win");
-                response.setHeader("Access-Control-Allow-Origin", request.getHeader("origin"));
+                response.setHeader("Access-Control-Allow-Origin", "http://www.xsfy.xyz");
+                //response.setHeader("Access-Control-Allow-Origin", request.getHeader("origin"));
                 return true;
             }
         }).addPathPatterns("/**");

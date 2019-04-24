@@ -20,16 +20,17 @@ public class BountyhelperApplicationTests {
     public void contextLoads() {
         Map<String, Integer> bogeys = new HashMap<>();
         Map<String, Integer> mwyhLimit = new HashMap<>();
-        bogeys.put("海坊主", 5);
-        bogeys.put("汤碗/琴/牙牙", 10);
-        bogeys.put("狸猫", 9);
-        bogeys.put("天邪鬼赤", 12);
-        mwyhLimit.put("小鹿男", 6);
-        mwyhLimit.put("姑获鸟", 6);
-        mwyhLimit.put("荒川", 6);
-        mwyhLimit.put("御魂", 4);
-        calculate.doCal(bogeys, mwyhLimit, 24);
-        System.out.println(calculate.getRes());
+        bogeys.put("盗墓小鬼", 8);
+        bogeys.put("丑时之女", 2);
+        bogeys.put("大天狗", 3);
+        bogeys.put("灯笼鬼", 11);
+        Map<String, Integer> res = new HashMap<>();
+        KillInfo killInfo = new KillInfo();
+        killInfo.setKillBogey(bogeys);
+        killInfo.setMwyhLimit(mwyhLimit);
+        killInfo.setLevelLimit(28);
+        calculate.doCal(res, killInfo);
+        System.out.println(res);
     }
 
 }

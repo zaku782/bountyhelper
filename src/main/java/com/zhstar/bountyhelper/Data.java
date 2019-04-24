@@ -1,5 +1,7 @@
 package com.zhstar.bountyhelper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +13,8 @@ import java.util.*;
 @Component
 class Data {
 
+    Logger logger = LoggerFactory.getLogger(Data.class);
+
     //妖怪副本分布
     private Map<String, List<Place>> bogeyPlace = new HashMap<>();
     //妖怪列表
@@ -19,6 +23,9 @@ class Data {
     private Map<String, String> puzzleMap = new HashMap<>();
 
     public Data(@Value("${bogey.place.file}") String bogeyPlaceFile) throws IOException {
+
+        logger.info("==================加载数据========================");
+
         //加载副本数据
         BufferedReader br = new BufferedReader(new FileReader(bogeyPlaceFile));
         String one = null;
@@ -71,6 +78,11 @@ class Data {
     }
 
     Map<String, List<Place>> getBogeyPlace() {
+       /* Map<String, List<Place>> data = new HashMap<>();
+        for (String key : bogeyPlace.keySet()) {
+            List<Place
+            data.put(key, bogeyPlace.get(key));
+        }*/
         return bogeyPlace;
     }
 
