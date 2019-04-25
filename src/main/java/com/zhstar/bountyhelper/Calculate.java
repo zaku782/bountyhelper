@@ -51,6 +51,7 @@ public class Calculate {
         //System.out.println(bogeys);
 
         for (String name : killInfo.getKillBogey().keySet()) {
+
             List<Place> places = data.getBogeyPlace().get(name);
 
             //过滤秘闻御魂限制
@@ -81,7 +82,7 @@ public class Calculate {
                     //如果数量相等,按以下优先级规则判定
                     //1.同类别副本,等级低者优先
                     //2.不同类别副本,故事>御魂>秘闻
-                    if (place.getName().equals(maxPlace.getName()) || (isStory(place) && isStory(maxPlace))) {
+                    if (isSameType(place, maxPlace)) {
                         if (getLevel(place) < getLevel(maxPlace)) {
                             replace = true;
                         }
@@ -176,6 +177,16 @@ public class Calculate {
 
     private boolean isYh(Place place) {
         return place.getName().equals("御魂");
+    }
+
+    private boolean isMw(Place place) {
+        return !isStory(place) && !isYh(place);
+    }
+
+    private boolean isSameType(Place one, Place two) {
+        return (isStory(one) && isStory(two)) ||
+                (isYh(one) && isYh(two)) ||
+                (isMw(one) && isMw(two));
     }
 
     Data getData() {
