@@ -7,7 +7,6 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.zhstar'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '10'
 
 repositories {
     mavenCentral()

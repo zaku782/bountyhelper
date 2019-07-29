@@ -12,7 +12,7 @@ public class Calculate {
     @Autowired
     Data data;
 
-    private Map<String, Integer> priority = new HashMap<>() {
+    private Map<String, Integer> priority = new HashMap<String, Integer>() {
         {
             put("故事", 3);
             put("御魂", 2);
@@ -85,6 +85,14 @@ public class Calculate {
                     if (isSameType(place, maxPlace)) {
                         if (getLevel(place) < getLevel(maxPlace)) {
                             replace = true;
+                        } else {
+                            //同样是故事,且是同一章,
+                            if (isStory(place) && getLevel(place) == getLevel(maxPlace)) {
+                                //标号小的怪优先
+                                if (getBogeyNumber(place) < getBogeyNumber(maxPlace)) {
+                                    replace = true;
+                                }
+                            }
                         }
                     } else {
                         if (placeToPriority(place) > placeToPriority(maxPlace)) {
@@ -168,6 +176,15 @@ public class Calculate {
             return Integer.parseInt(place.getName().substring(0, place.getName().length() - 1));
         } else {
             return Integer.parseInt(place.getKill().substring(0, place.getKill().length() - 1));
+        }
+    }
+
+    //获取故事副本怪物标号
+    private int getBogeyNumber(Place place) {
+        try {
+            return Integer.parseInt(place.getKill().substring(place.getKill().length() - 1));
+        } catch (NumberFormatException e) {
+            return 0;
         }
     }
 
